@@ -1,6 +1,8 @@
 # ecto_howto
 Cheat sheet for ecto queries
 
+Most of these were pulled from [the-little-ecto-cookbook]
+
 ```elixir
 def update_title(post, new_title) do
   query =
@@ -59,3 +61,5 @@ post = from p in "posts", where: [id: ^id]
 {1, _} = MyApp.Repo.delete_all post
 ```
 
+
+   [the-little-ecto-cookbook]: <https://dashbit.co/ebooks/the-little-ecto-cookbook>
