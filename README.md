@@ -78,6 +78,11 @@ Post
 
 ```elixir
 defp get_or_insert_tag(name) do
+  Repo.get_by(MyApp.Tag, name: name) ||
+    maybe_insert_tag(name)
+end
+
+defp maybe_insert_tag(name) do
   %Tag{}
   |> Ecto.Changeset.change(name: name)
   |> Ecto.Changeset.unique_constraint(:name)
@@ -87,6 +92,7 @@ defp get_or_insert_tag(name) do
     {:error, _} -> Repo.get_by!(MyApp.Tag, name: name)
   end
 end
+```
 ```
 
    [the-little-ecto-cookbook]: <https://dashbit.co/ebooks/the-little-ecto-cookbook>
