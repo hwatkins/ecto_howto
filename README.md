@@ -60,6 +60,21 @@ post = from p in "posts", where: [id: ^id]
 # Delete all matching posts
 {1, _} = MyApp.Repo.delete_all post
 ```
+```elixir
+import Ecto.Query
+from p in Post,
+  where: p.author == "José" and p.category == "Elixir",
+  where: p.published_at > ^minimum_date,
+  order_by: [desc: p.published_at]
+```
+
+```elixir
+import Ecto.Query
+Post
+|> where([p], p.author == "José" and p.category == "Elixir")
+|> where([p], p.published_at > ^minimum_date)
+|> order_by([p], desc: p.published_at)
+```
 
 
    [the-little-ecto-cookbook]: <https://dashbit.co/ebooks/the-little-ecto-cookbook>
